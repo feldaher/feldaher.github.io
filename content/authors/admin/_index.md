@@ -11,21 +11,21 @@ last_name: El-Daher
 
 # Status emoji
 status:
-  icon: ☕️
+  icon: 🤔
 
 # Is this the primary user of the site?
 superuser: true
 
 # Role/position/tagline
-role: Professor of Artificial Intelligence
+role: Questioning the Universe until it answers.
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: Stanford University
-    url: https://www.stanford.edu/
+  - name: The University of Edinburgh
+    url: https://www.ed.ac.edu/
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+bio: Physicist mutated into a pseudo-biologist aiming to understand how biological systems respond and adapt to critical conditions such as stress and injuries.
 
 # Interests to show in About widget
 interests:
