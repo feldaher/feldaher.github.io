@@ -25,7 +25,7 @@ organizations:
     url: https://www.ed.ac.uk/
 
 # Short bio (displayed in user profile at end of posts)
-bio: Physicist mutated into a pseudo-biologist aiming to understand how biological systems respond and adapt to critical conditions such as stress and injuries.
+bio: Physicist mutated into a systems biophysicist aiming to understand how biological systems respond and adapt to critical conditions such as stress and injuries.
 
 # Interests to show in About widget
 interests:
