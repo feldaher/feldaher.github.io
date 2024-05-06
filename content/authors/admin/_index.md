@@ -123,5 +123,5 @@ social:
 highlight_name: true
 ---
 
-I am a postdoctoral researcher at the University of Edinburgh, UK and permanent research engineer at CNRS, France. My research interests include cellular stress response, tissue repair and regeneration, bioimaging and modelling. 
+I am a postdoctoral researcher at the University of Edinburgh, UK and tenured research engineer at CNRS, France. My research interests include cellular stress response, tissue repair and regeneration, bioimaging and modelling. 
 {style="text-align: justify;"}
