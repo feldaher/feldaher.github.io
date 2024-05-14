@@ -122,7 +122,7 @@ Observing how light behaves in a swimming pool brought us to a deeper understand
 
 From the sun to the beach to the lab.
 
-Fun stuff, right? Physics rocks, I tell you!
+Fun stuff, right? 
 
 ## Sources
 

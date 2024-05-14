@@ -58,7 +58,7 @@ sections:
         - title: Postdoctoral Research Associate
           company: University of Edinburgh
           company_url: ''
-          company_logo: org-gc
+          company_logo: UoE
           location: Scotland, UK
           date_start: '2022-06-01'
           date_end: ''
@@ -66,7 +66,7 @@ sections:
         - title: Postdoctoral Research Associate
           company: University of Edinburgh
           company_url: ''
-          company_logo: org-x
+          company_logo: UoE
           location: Scotland, UK
           date_start: '2018-11-01'
           date_end: '2022-05-31'
@@ -151,7 +151,7 @@ sections:
 
   - block: tag_cloud
     content:
-      title: Popular Topics
+      title: Topics
     design:
       columns: '2'
 
