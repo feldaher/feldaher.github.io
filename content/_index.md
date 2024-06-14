@@ -39,7 +39,7 @@ sections:
   - block: about.biography
     id: about
     content:
-      title: Biography
+      title: Adaptation of biological systems to critical changes
       # Choose a user profile to display (a folder name within `content/authors/`)
       username: admin
 
@@ -118,10 +118,12 @@ sections:
       buttons:
         - name: All
           tag: '*'
-        - name: Deep Learning
-          tag: Deep Learning
-        - name: Other
-          tag: Demo
+        - name: CNS regeneration
+          tag: regeneration
+        - name: Stress Response
+          tag: stress response
+        - name: Instumentation
+          tag: instrumentation
     design:
       # Choose how many columns the section has. Valid values: '1' or '2'.
       columns: '1'
