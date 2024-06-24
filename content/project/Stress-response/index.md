@@ -1,6 +1,6 @@
 ---
 title: Stress response in yeast
-summary: Investigaing how yeast cell cope with stress in various conditions
+summary: Investigating how yeast cell cope with stress in various conditions
 tags:
   - Stress response
   - Deep learning
@@ -12,7 +12,7 @@ date: '2016-04-27T00:00:00Z'
 external_link: ''
 
 image:
-  caption: Photo by rawpixel on Unsplash
+  caption: URA8 protein aggregation after glucose deprivation
   focal_point: Smart
 
 links:

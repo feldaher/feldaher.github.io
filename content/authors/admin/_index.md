@@ -17,7 +17,7 @@ status:
 superuser: true
 
 # Role/position/tagline
-role: Questioning the Universe until it answers.
+role: Questioning the Universe until it answers, which happens sometime.
 
 # Organizations/Affiliations to show in About widget
 organizations:
@@ -25,7 +25,7 @@ organizations:
     url: https://www.ed.ac.uk/
 
 # Short bio (displayed in user profile at end of posts)
-bio: Physicist mutated into a systems biophysicist aiming to understand how biological systems respond and adapt to critical conditions such as stress and injuries.
+bio: Biophysicist aiming to understand how biological systems respond and adapt to critical conditions such as stress and injuries.
 
 # Interests to show in About widget
 interests:
@@ -34,6 +34,8 @@ interests:
   - Systems biology
   - Image analysis
   - Microfluidics
+  - Microscopy
+  - F-techniques
   - 3D printing
 
 # Education to show in About widget
