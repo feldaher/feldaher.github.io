@@ -127,7 +127,7 @@ sections:
   - block: portfolio
     id: games
     content:
-      title: Learn-Plase
+      title: Play
       filters:
         folders:
           - games
