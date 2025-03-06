@@ -16,7 +16,7 @@ main:
   - name: Publications
     url: '#publications'
     weight: 40
-  - name: Learn-Play
+  - name: Play
     url:'#games'
     weight: 50
     
