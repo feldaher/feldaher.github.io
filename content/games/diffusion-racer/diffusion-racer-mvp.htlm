@@ -1,1 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diffusion Racer - MVP</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        
+        #game-container {
+            margin: 20px auto;
+            width: 800px;
+            position: relative;
+        }
+        
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 2px solid #333;
+        }
+        
+        .controls {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .control-group {
+            margin: 10px;
+        }
+        
+        .science-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 8px;
+        }
+        
+        .book-reference {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            border-left: 5px solid #43a047;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Diffusion Racer</h1>
+        <div class="controls">
+            <div class="control-group">
+                <label for="temperature">Temperature:</label>
+                <input type="range" id="temperature" min="0" max="100" value="50">
+                <span id="temp-value">50</span>°C
+            </div>
+            <div class="control-group">
+                <label for="viscosity">Cytoplasm Viscosity:</label>
+                <input type="range" id="viscosity" min="0" max="100" value="30">
+                <span id="viscosity-value">30</span>%
+            </div>
+            <div class="control-group">
+                <button id="start-button">Start</button>
+                <button id="reset-button">Reset</button>
+            </div>
+        </div>
+        
+        <canvas id="game-canvas" width="800" height="500"></canvas>
+        
+        <div class="science-panel">
+            <h3>Science Behind the Game</h3>
+            <p id="science-explanation">Molecules move randomly due to Brownian motion, which increases with temperature. The size of the molecule affects how quickly it can diffuse through the cytoplasm. Try adjusting the temperature to see how it affects molecular movement!</p>
+            <div id="data-display">
+                <p>Average Speed: <span id="avg-speed">0</span> μm/s</p>
+                <p>Temperature Effect: At <span id="temp-effect-value">50</span>°C, diffusion is <span id="diff-multiplier">1.0</span>x baseline</p>
+            </div>
+        </div>
+        
+        <div class="book-reference">
+            <h4>Learn More</h4>
+            <p>For a deeper understanding of diffusion principles in cellular environments, check out "Chapter 3: Molecular Movement in Cells" in my upcoming book "The Physics of Biology".</p>
+        </div>
+    </div>
 
+    <script>
+        // Game constants
+        const MOLECULE_TYPES = {
+            oxygen: { radius: 5, color: '#3498db', mass: 1, brownianFactor: 2.0 },
+            glucose: { radius: 8, color: '#9b59b6', mass: 3, brownianFactor: 1.2 },
+            protein: { radius: 15, color: '#e74c3c', mass: 8, brownianFactor: 0.5 }
+        };
+        
+        // Game variables
+        let canvas = document.getElementById('game-canvas');
+        let ctx = canvas.getContext('2d');
+        let molecules = [];
+        let gradients = [];
+        let gameRunning = false;
+        let temperature = 50;
+        let viscosity = 30;
+        let frameCount = 0;
+        let avgSpeedData = [];
+        
+        // UI elements
+        const tempSlider = document.getElementById('temperature');
+        const tempValue = document.getElementById('temp-value');
+        const viscositySlider = document.getElementById('viscosity');
+        const viscosityValue = document.getElementById('viscosity-value');
+        const startButton = document.getElementById('start-button');
+        const resetButton = document.getElementById('reset-button');
+        const avgSpeedDisplay = document.getElementById('avg-speed');
+        const tempEffectValue = document.getElementById('temp-effect-value');
+        const diffMultiplier = document.getElementById('diff-multiplier');
+        
+        // Event listeners
+        tempSlider.addEventListener('input', function() {
+            temperature = parseInt(this.value);
+            tempValue.textContent = temperature;
+            tempEffectValue.textContent = temperature;
+            
+            // Calculate how temperature affects diffusion (rough approximation)
+            const baseTemp = 50;
+            const multiplier = Math.pow(1.05, (temperature - baseTemp) / 10).toFixed(2);
+            diffMultiplier.textContent = multiplier;
+        });
+        
+        viscositySlider.addEventListener('input', function() {
+            viscosity = parseInt(this.value);
+            viscosityValue.textContent = viscosity;
+        });
+        
+        startButton.addEventListener('click', function() {
+            if (!gameRunning) {
+                initGame();
+                gameRunning = true;
+                startButton.textContent = "Pause";
+            } else {
+                gameRunning = false;
+                startButton.textContent = "Resume";
+            }
+        });
+        
+        resetButton.addEventListener('click', function() {
+            gameRunning = false;
+            molecules = [];
+            gradients = [];
+            avgSpeedData = [];
+            startButton.textContent = "Start";
+            avgSpeedDisplay.textContent = "0";
+            clearCanvas();
+        });
+        
+        // Game functions
+        function initGame() {
+            molecules = [];
+            avgSpeedData = [];
+            
+            // Create molecules of different types
+            createMolecules('oxygen', 20);
+            createMolecules('glucose', 10);
+            createMolecules('protein', 5);
+            
+            // Create a concentration gradient
+            createConcentrationGradient(600, 250, 150, 0.8);
+            
+            // Start game loop
+            if (!gameRunning) {
+                gameLoop();
+            }
+        }
+        
+        function createMolecules(type, count) {
+            const typeProps = MOLECULE_TYPES[type];
+            
+            for (let i = 0; i < count; i++) {
+                molecules.push({
+                    x: Math.random() * (canvas.width / 3) + 50,
+                    y: Math.random() * (canvas.height - 100) + 50,
+                    vx: 0,
+                    vy: 0,
+                    type: type,
+                    radius: typeProps.radius,
+                    color: typeProps.color,
+                    mass: typeProps.mass,
+                    brownianFactor: typeProps.brownianFactor
+                });
+            }
+        }
+        
+        function createConcentrationGradient(x, y, radius, strength) {
+            gradients.push({
+                x: x,
+                y: y,
+                radius: radius,
+                strength: strength
+            });
+        }
+        
+        function gameLoop() {
+            if (!gameRunning) return;
+            
+            clearCanvas();
+            updateMolecules();
+            drawGradients();
+            drawMolecules();
+            updateStats();
+            
+            frameCount++;
+            requestAnimationFrame(gameLoop);
+        }
+        
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw cell environment
+            ctx.fillStyle = "#f8f9fa";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw cell membrane
+            ctx.strokeStyle = "#2c3e50";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+        }
+        
+        function drawGradients() {
+            gradients.forEach(gradient => {
+                // Create a radial gradient
+                const grd = ctx.createRadialGradient(
+                    gradient.x, gradient.y, 0,
+                    gradient.x, gradient.y, gradient.radius
+                );
+                
+                grd.addColorStop(0, 'rgba(52, 152, 219, 0.3)');
+                grd.addColorStop(1, 'rgba(52, 152, 219, 0.0)');
+                
+                ctx.fillStyle = grd;
+                ctx.beginPath();
+                ctx.arc(gradient.x, gradient.y, gradient.radius, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Label the gradient
+                ctx.fillStyle = "#2c3e50";
+                ctx.font = "14px Arial";
+                ctx.fillText("Lower Concentration", gradient.x - 80, gradient.y - gradient.radius - 10);
+            });
+        }
+        
+        function drawMolecules() {
+            molecules.forEach(molecule => {
+                ctx.fillStyle = molecule.color;
+                ctx.beginPath();
+                ctx.arc(molecule.x, molecule.y, molecule.radius, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Draw velocity vector (optional for visualization)
+                if (Math.hypot(molecule.vx, molecule.vy) > 0.5) {
+                    ctx.strokeStyle = "rgba(0,0,0,0.3)";
+                    ctx.beginPath();
+                    ctx.moveTo(molecule.x, molecule.y);
+                    ctx.lineTo(
+                        molecule.x + molecule.vx * 3, 
+                        molecule.y + molecule.vy * 3
+                    );
+                    ctx.stroke();
+                }
+            });
+        }
+        
+        function updateMolecules() {
+            molecules.forEach(molecule => {
+                // Apply Brownian motion (random movement affected by temperature)
+                const brownianIntensity = (temperature / 50) * molecule.brownianFactor;
+                molecule.vx += (Math.random() - 0.5) * brownianIntensity;
+                molecule.vy += (Math.random() - 0.5) * brownianIntensity;
+                
+                // Apply drag based on viscosity and mass
+                const drag = (viscosity / 100) * 0.1 * molecule.mass;
+                molecule.vx *= (1 - drag);
+                molecule.vy *= (1 - drag);
+                
+                // Apply forces from concentration gradients
+                gradients.forEach(gradient => {
+                    const dx = gradient.x - molecule.x;
+                    const dy = gradient.y - molecule.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < gradient.radius) {
+                        // Calculate force toward lower concentration
+                        const force = gradient.strength * (1 - distance / gradient.radius) / molecule.mass;
+                        molecule.vx += (dx / distance) * force;
+                        molecule.vy += (dy / distance) * force;
+                    }
+                });
+                
+                // Update position
+                molecule.x += molecule.vx;
+                molecule.y += molecule.vy;
+                
+                // Boundary collision
+                if (molecule.x < 20 + molecule.radius) {
+                    molecule.x = 20 + molecule.radius;
+                    molecule.vx *= -0.5;  // Lose energy on collision
+                }
+                if (molecule.x > canvas.width - 20 - molecule.radius) {
+                    molecule.x = canvas.width - 20 - molecule.radius;
+                    molecule.vx *= -0.5;
+                }
+                if (molecule.y < 20 + molecule.radius) {
+                    molecule.y = 20 + molecule.radius;
+                    molecule.vy *= -0.5;
+                }
+                if (molecule.y > canvas.height - 20 - molecule.radius) {
+                    molecule.y = canvas.height - 20 - molecule.radius;
+                    molecule.vy *= -0.5;
+                }
+                
+                // Track speed for statistics
+                const speed = Math.sqrt(molecule.vx * molecule.vx + molecule.vy * molecule.vy);
+                avgSpeedData.push(speed);
+                
+                // Limit data array size
+                if (avgSpeedData.length > 100) {
+                    avgSpeedData.shift();
+                }
+            });
+        }
+        
+        function updateStats() {
+            if (avgSpeedData.length > 0) {
+                const avgSpeed = avgSpeedData.reduce((sum, val) => sum + val, 0) / avgSpeedData.length;
+                // Convert to realistic units (μm/s) with a scaling factor
+                const scaledSpeed = (avgSpeed * 5).toFixed(2);
+                avgSpeedDisplay.textContent = scaledSpeed;
+            }
+        }
+        
+        // Initial setup
+        clearCanvas();
+    </script>
+</body>
+</html>
