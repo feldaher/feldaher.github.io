@@ -10,9 +10,9 @@ authors:
 - C G Becker
 - T Becker
 date: '2024-06-04'
-publishDate: '2024-05-03T13:16:53.416145Z'
+publishDate: '2024-10-17'
 publication_types:
 - article-journal
-publication: '*bioRxiv*'
-doi: 10.1101/2024.06.04.597300
+publication: '*Life Science Alliance*'
+doi: 10.26508/lsa.202403052
 ---
