@@ -30,9 +30,6 @@ An interactive simulation that demonstrates how molecules move through cells via
 3. Press Start to begin the simulation
 4. Watch how different sized molecules (oxygen, glucose, and proteins) move differently
 
-<div style="position: relative; padding-bottom: 80%; height: 0; overflow: hidden; margin-top: 20px; margin-bottom: 20px;">
-  <iframe src="/games/diffusion-racer/game.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid #ddd; border-radius: 4px;" title="Diffusion Racer Game"></iframe>
-</div>
 
 ### The Science
 
