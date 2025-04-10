@@ -27,6 +27,8 @@ This is (hopefully) educational game, so don't get too upset if it's not fully r
 
 Have fun!
 
+[Play here](diffusion-racer-mvp.html)
+
 ### How to Play
 
 1. Use the temperature slider to adjust thermal energy in the system
