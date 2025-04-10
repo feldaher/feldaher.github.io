@@ -22,7 +22,8 @@ links:
 
 ## Diffusion Racer
 
-An interactive simulation that demonstrates how molecules move through cells via diffusion. Adjust temperature and cytoplasm viscosity to see how they affect molecular movement in real-time.
+I created an interactive simulation that demonstrates how molecules move through cells via diffusion. Adjust temperature and cytoplasm viscosity to see how they affect molecular movement in real-time.
+This is (hopefully) educational game, so don't get too upset if it's not fully realistic!
 
 ### How to Play
 
