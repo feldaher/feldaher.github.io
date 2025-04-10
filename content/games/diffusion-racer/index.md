@@ -16,8 +16,9 @@ links:
   - icon: play-circle
     icon_pack: fas
     name: Play Game
-    url: '/games/diffusion-racer/diffusion-racer-mvp.html'
+    url: '{{ "games/diffusion-racer/diffusion-racer-mvp.html" | relURL }}'
 ---
+
 
 ## Diffusion Racer
 
