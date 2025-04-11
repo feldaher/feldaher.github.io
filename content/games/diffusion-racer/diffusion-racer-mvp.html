@@ -121,8 +121,8 @@
         };
         
         // Game variables
-        let canvas = document.getElementById('game-canvas');
-        let ctx = canvas.getContext('2d');
+        const canvas = document.getElementById('game-canvas');
+        const ctx = canvas.getContext('2d');
         let molecules = [];
         let gradients = [];
         let gameRunning = false;
@@ -130,6 +130,7 @@
         let viscosity = 30;
         let frameCount = 0;
         let avgSpeedData = [];
+        let animationFrameId = null;
         
         // UI elements
         const tempSlider = document.getElementById('temperature');
@@ -164,14 +165,24 @@
                 initGame();
                 gameRunning = true;
                 startButton.textContent = "Pause";
+                gameLoop(); // Start the game loop only when not running
             } else {
                 gameRunning = false;
                 startButton.textContent = "Resume";
+                // Cancel the animation frame to truly pause
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = null;
+                }
             }
         });
         
         resetButton.addEventListener('click', function() {
             gameRunning = false;
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
             molecules = [];
             gradients = [];
             avgSpeedData = [];
@@ -183,6 +194,7 @@
         // Game functions
         function initGame() {
             molecules = [];
+            gradients = [];
             avgSpeedData = [];
             
             // Create molecules of different types
@@ -193,10 +205,10 @@
             // Create a concentration gradient
             createConcentrationGradient(600, 250, 150, 0.8);
             
-            // Start game loop
-            if (!gameRunning) {
-                gameLoop();
-            }
+            // Initial draw (don't wait for first frame)
+            clearCanvas();
+            drawGradients();
+            drawMolecules();
         }
         
         function createMolecules(type, count) {
@@ -236,7 +248,7 @@
             updateStats();
             
             frameCount++;
-            requestAnimationFrame(gameLoop);
+            animationFrameId = requestAnimationFrame(gameLoop);
         }
         
         function clearCanvas() {
@@ -364,7 +376,7 @@
             }
         }
         
-        // Initial setup
+        // Initial setup - draw an empty canvas to start
         clearCanvas();
     </script>
 </body>
