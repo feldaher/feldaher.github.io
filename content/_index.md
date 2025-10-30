@@ -126,24 +126,16 @@ sections:
       view: citation
   
   - block: collection
-    id: posts  # This creates a URL anchor #posts
+    id: posts  
     content:
       title: Recent Posts
       subtitle: 'Check out what I've been writing about'
-      # 'count' limits the number of posts on the homepage (0 = all)
       count: 5 
-      # 'order' can be 'date desc' (newest first) or 'date asc' (oldest first)
       order: 'date desc' 
-      # Filter to only show content from the 'post' folder
       filters:
         folders:
           - post
-        # You can also filter by tags, categories, etc.
-        # tags:
-        #   - MyTag
     design:
-      # 'view' controls the layout. 
-      # Other options: 'compact', 'card', 'showcase'
       view: compact 
       columns: '2' # '1' or '2'
 
