@@ -128,17 +128,13 @@ sections:
   - block: collection
     id: posts
     content:
-      title: Recent Posts
-      subtitle: 'Check out what I've been writing about'
-      count: 5
-      order: 'date desc'
+      title: Recent posts
       filters:
         folders:
           - post
     design:
       view: compact
       columns: '2'
-
 
   - block: portfolio
     id: games
