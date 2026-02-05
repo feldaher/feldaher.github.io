@@ -1,9 +1,8 @@
 ---
-type: Page
 title: Why are there moving lights at the bottom of swimming pools? Here comes the Transport of Intensity effect.
 description: null
 icon: null
-createdAt: '2024-05-13T13:44:51.329Z'
+createdAt: "2024-05-13T13:44:51.329Z"
 creationDate: 2024-05-13 14:44
 modificationDate: 2024-05-13 14:45
 tags: [blog]
@@ -42,7 +41,7 @@ But let's dive a bit deeper into this phenomenon to understand how it works and 
 
 You may have learned that phase is not detectable unless you produce interferences. This typically requires a coherent monochromatic light source like a laser.
 
-*So how can transparent objects generate intensity patterns from incoherent plurichromatic light like the sunlight? *
+_So how can transparent objects generate intensity patterns from incoherent plurichromatic light like the sunlight? _
 
 The theory behind this common phenomenon has been [established in 1982 by Teague](https://opg.optica.org/josa/fulltext.cfm?uri=josa-72-9-1199&id=58482). It is named the Transport of intensity (TIE) theory.
 
@@ -122,11 +121,10 @@ Observing how light behaves in a swimming pool brought us to a deeper understand
 
 From the sun to the beach to the lab.
 
-Fun stuff, right? 
+Fun stuff, right?
 
 ## Sources
 
 Original Teague papers [opg.optica.org/josa/abstract.cfm?uri=josa-7..](https://opg.optica.org/josa/abstract.cfm?uri=josa-73-11-1434) [opg.optica.org/josa/fulltext.cfm?uri=josa-7..](https://opg.optica.org/josa/fulltext.cfm?uri=josa-72-9-1199&id=58482)
 
 Great paper on the Transport of Intensity: [Bostan et al. IEEE TRANSACTIONS ON IMAGE PROCESSING, VOL. 25, NO. 2, FEBRUARY 2016.](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjjlPTPwfr4AhWWQ0EAHfyRBqgQFnoECAcQAQ&url=http%3A%2F%2Fbigwww.epfl.ch%2Fpublications%2Fbostan1601.pdf&usg=AOvVaw1Rd0kCApAkzVvTuH_E2gfz)
-

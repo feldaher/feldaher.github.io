@@ -1,0 +1,24 @@
+{{ define "main" }}
+<section class="page-section publication-list">
+  <h1 class="page-title">{{ .Title | upper }}</h1>
+  
+  <div class="publications-container">
+    {{ range .Pages.ByDate.Reverse }}
+    <div class="publication-item">
+      <div class="pub-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+      <div class="pub-authors">
+        {{ partial "authors_list.html" . }}
+      </div>
+      <div class="pub-meta">
+        {{ if .Params.publication_short }}<span class="pub-journal">{{ .Params.publication_short }}</span>{{ end }}
+        {{ if .Date }}<span class="pub-year">{{ .Date.Format "2006" }}</span>{{ end }}
+      </div>
+      <div class="pub-links">
+        {{ if .Params.url_pdf }}<a href="{{ .Params.url_pdf }}">PDF</a>{{ end }}
+        {{ if .Params.url_code }}<a href="{{ .Params.url_code }}">Code</a>{{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

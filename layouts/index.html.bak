@@ -1,0 +1,9 @@
+{{ define "main" }}
+<section class="home-section">
+  <div class="intro-container">
+    <div class="intro-content">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+{{ end }}

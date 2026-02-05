@@ -1,0 +1,24 @@
+{{ define "main" }}
+<section class="page-section">
+  <h1 class="page-title">{{ .Title | upper }}</h1>
+  <div class="page-content">
+    {{ .Content }}
+  </div>
+
+  <div class="research-grid">
+    {{ range .Pages.ByDate.Reverse }}
+    <div class="research-item">
+      <div class="research-thumb">
+        {{ with .Resources.GetMatch "featured.*" }}
+        <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
+        {{ end }}
+      </div>
+      <div class="research-info">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <div class="research-summary">{{ .Summary }}</div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

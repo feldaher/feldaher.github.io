@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="page-section">
+  <h1 class="page-title">{{ .Title | upper }}</h1>
+  <div class="page-content">
+    {{ .Content }}
+  </div>
+
+  <div class="list-container">
+    {{ range .Pages }}
+    <div class="list-item">
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <div class="item-summary">{{ .Summary }}</div>
+      {{ if .Date }}<div class="item-date">{{ .Date.Format "January 2, 2006" }}</div>{{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

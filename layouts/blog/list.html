@@ -1,0 +1,27 @@
+{{ define "main" }}
+<section class="page-section">
+  <div class="blog-header">
+    <h1 class="page-title">{{ .Title | upper }}</h1>
+    {{ with .Content }}<div class="page-content">{{ . }}</div>{{ end }}
+  </div>
+
+  <div class="blog-grid">
+    {{ range .Pages.ByDate.Reverse }}
+    <article class="blog-card">
+      <a href="{{ .RelPermalink }}" class="blog-card-link">
+        <div class="blog-card-content">
+          <div class="blog-meta">
+            {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>{{ end }}
+          </div>
+          <h2 class="blog-title">{{ .Title }}</h2>
+          <div class="blog-summary">
+            {{ .Summary | truncate 150 }}
+          </div>
+          <div class="blog-read-more">Read Article →</div>
+        </div>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

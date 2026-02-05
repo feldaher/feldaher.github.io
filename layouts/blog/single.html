@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article class="blog-post">
+  <header class="blog-post-header">
+    <h1 class="blog-post-title">{{ .Title }}</h1>
+    <div class="blog-post-meta">
+        {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>{{ end }}
+        {{ if .Params.authors }} · {{ delimit .Params.authors ", " }}{{ end }}
+    </div>
+  </header>
+  
+  <div class="blog-post-content">
+    {{ .Content }}
+  </div>
+
+  <footer class="blog-post-footer">
+    <a href="/blog/" class="back-link">← Back to Blog</a>
+  </footer>
+</article>
+{{ end }}
