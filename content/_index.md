@@ -4,7 +4,7 @@ subtitle: "Postdoc · Tissue Repair & Stress Responses · Edinburgh + CNRS"
 ---
 
 <div class="intro-container">
-<div class="intro-greeting">Howdy, I'm Francois.</div>
+<div class="intro-greeting">Hello, I'm Francois.</div>
 
 <div class="home-links">
 <a href="https://bsky.app/" class="home-link-item" target="_blank">BLUESKY</a>
