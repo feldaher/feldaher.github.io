@@ -1,8 +1,25 @@
 :root {
-  --bg-color: #ffffff;
-  --text-color: #333333;
-  --link-color: #333333;
-  --accent-color: #666666;
+  /* Solarized Light palette */
+  --sol-base3:  #fdf6e3; /* main background */
+  --sol-base2:  #eee8d5; /* highlighted background */
+  --sol-base1:  #93a1a1; /* secondary content / comments */
+  --sol-base00: #657b83; /* primary body text */
+  --sol-base01: #586e75; /* emphasized text / headings */
+  --sol-blue:   #268bd2;
+  --sol-cyan:   #2aa198;
+  --sol-green:  #859900;
+  --sol-yellow: #b58900;
+  --sol-orange: #cb4b16;
+  --sol-red:    #dc322f;
+  --sol-violet: #6c71c4;
+
+  --bg-color:     var(--sol-base3);
+  --bg-highlight: var(--sol-base2);
+  --text-color:   var(--sol-base00);
+  --text-emph:    var(--sol-base01);
+  --link-color:   var(--sol-blue);
+  --accent-color: var(--sol-base1);
+  --border-color: var(--sol-base2);
   --font-main: "Jost", sans-serif;
   --container-width: 1000px;
   --spacing: 2rem;
@@ -182,7 +199,7 @@ a:hover {
 }
 
 .research-item {
-  border: 1px solid #eee;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s;
@@ -196,7 +213,7 @@ a:hover {
 .research-thumb {
   height: 200px;
   overflow: hidden;
-  background-color: #f5f5f5;
+  background-color: var(--bg-highlight);
 }
 
 .research-thumb img {
@@ -271,9 +288,9 @@ a:hover {
 }
 
 .bio-card {
-  background: white;
+  background: var(--bg-highlight);
   border-radius: 16px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  box-shadow: 0 10px 25px -5px rgba(0, 43, 54, 0.08), 0 8px 10px -6px rgba(0, 43, 54, 0.04);
   padding: 3rem;
   margin: 2rem auto;
   max-width: 100%; /* Full width of container */
@@ -335,8 +352,8 @@ a:hover {
 }
 
 .blog-card {
-  background: white;
-  border: 1px solid #f0f0f0;
+  background: var(--bg-highlight);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -345,8 +362,8 @@ a:hover {
 
 .blog-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  border-color: #e0e0e0;
+  box-shadow: 0 10px 20px rgba(0, 43, 54, 0.1);
+  border-color: var(--accent-color);
 }
 
 .blog-card-link {
@@ -443,19 +460,19 @@ a:hover {
 }
 
 .blog-post-content pre {
-  background: #f8f9fa;
+  background: var(--bg-highlight);
   padding: 1.5rem;
   border-radius: 8px;
   overflow-x: auto;
   margin: 2rem 0;
   font-size: 0.9em;
-  border: 1px solid #eee;
+  border: 1px solid var(--border-color);
 }
 
 .blog-post-footer {
   margin-top: 5rem;
   padding-top: 2rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border-color);
 }
 
 .back-link {
@@ -484,7 +501,7 @@ a:hover {
   font-weight: 500;
   margin-top: 2rem;
   margin-bottom: 1.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.5rem;
   letter-spacing: 1px;
 }
@@ -514,7 +531,7 @@ a:hover {
 .interests-list li {
   margin-bottom: 0.5rem;
   padding-left: 1rem;
-  border-left: 2px solid #eee;
+  border-left: 2px solid var(--sol-cyan);
 }
 
 .skills-container {
