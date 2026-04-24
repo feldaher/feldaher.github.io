@@ -1,8 +1,8 @@
 ---
 title: "Francois El-Daher"
-eyebrow: "Postdoctoral Researcher"
+eyebrow: "Questioning the Universe until it answers, which sometimes happens..."
 affiliation: "University of Edinburgh · CNRS France"
-bio: "I study how cells sense and adapt to stress, and how tissues repair themselves after injury. Combining quantitative microscopy, microfluidics, and computational modelling, I aim to bridge the gap between biological complexity and quantitative understanding."
+bio: "I study how cells sense and adapt to stress, and how tissues repair after injury. Combining quantitative microscopy, microfluidics, and computational modelling, I aim to bridge the gap between biological complexity and quantitative understanding."
 tags:
   - "Tissue Repair"
   - "Stress Response"
