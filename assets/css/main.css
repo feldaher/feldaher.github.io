@@ -90,85 +90,272 @@ a:hover {
   min-height: 60vh;
 }
 
-/* Hero Section */
-.hero-section {
-  position: relative;
-  height: 60vh;
-  min-height: 400px;
-  background-image: url('/images/hero-bg.png');
-  background-size: cover;
-  background-position: center;
+/* ── Home: break out of the .main-content container ─ */
+.main-content:has(.home-hero) {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Home Hero ──────────────────────────────────────── */
+.home-hero {
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  color: #fff;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  background-image: radial-gradient(circle, var(--sol-base2) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
-.hero-overlay {
+.home-hero::before {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* overlay opacity */
-  z-index: 1;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sol-base2);
+  top: -170px;
+  right: -110px;
+  pointer-events: none;
 }
 
-.hero-content {
+.home-hero::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: var(--bg-highlight);
+  bottom: -90px;
+  left: -60px;
+  pointer-events: none;
+}
+
+.home-hero-inner {
   position: relative;
-  z-index: 2;
-  padding: 0 2rem;
-  max-width: 800px;
-}
-
-.hero-title {
-  font-size: 3rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  letter-spacing: 2px;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  font-weight: 300;
-  opacity: 0.9;
-}
-
-/* Homepage */
-.intro-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  z-index: 1;
   text-align: center;
-  gap: 2rem;
+  max-width: var(--container-width);
+  padding: 6rem 2rem;
+  width: 100%;
 }
 
-.intro-greeting {
-  font-size: 2.5rem;
+.home-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--sol-cyan);
+  margin: 0 0 2rem;
   font-weight: 500;
 }
 
-.intro-content {
-  max-width: 100%;
+.home-name {
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-weight: 200;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin: 0 0 2rem;
+  color: var(--text-emph);
 }
 
-.home-links {
+.home-divider {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(to right, var(--sol-cyan), var(--sol-blue));
+  margin: 0 auto 2rem;
+  border-radius: 2px;
+}
+
+.home-affil {
+  font-size: 1rem;
+  color: var(--accent-color);
+  margin: 0 0 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.home-tags {
   display: flex;
-  gap: 1.5rem;
   flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.home-tag {
+  font-size: 0.73rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 0.3rem 0.9rem;
+  border-radius: 100px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.home-tag:hover {
+  border-color: var(--sol-cyan);
+  color: var(--sol-cyan);
+}
+
+.home-social-links {
+  display: flex;
+  gap: 0.5rem 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.home-social-link {
+  font-size: 0.78rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--text-color);
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.2s;
+}
+
+.home-social-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--sol-cyan);
+  transition: width 0.25s ease;
+}
+
+.home-social-link:hover {
+  opacity: 1;
+  color: var(--sol-cyan);
+}
+
+.home-social-link:hover::after {
+  width: 100%;
+}
+
+/* ── Bio Section ────────────────────────────────────── */
+.home-bio-section {
+  background-color: var(--bg-highlight);
+  padding: 5rem 2rem;
+}
+
+.home-bio-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-bio-text {
+  font-size: 1.2rem;
+  line-height: 1.85;
+  color: var(--text-color);
+  margin: 0 0 2.5rem;
+  font-weight: 300;
+}
+
+.home-bio-cta {
+  display: inline-block;
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--text-emph);
+  border-bottom: 2px solid var(--sol-cyan);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+
+.home-bio-cta:hover {
+  opacity: 1;
+  color: var(--sol-cyan);
+}
+
+/* ── Research Section ───────────────────────────────── */
+.home-research-section {
+  padding: 5rem 2rem;
+  background-color: var(--bg-color);
+}
+
+.home-research-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.home-section-label {
+  font-size: 0.73rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  text-align: center;
+  display: block;
+  margin-bottom: 3rem;
+}
+
+.home-research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.home-research-card {
+  padding: 2rem;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.home-research-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 43, 54, 0.08);
+}
+
+.home-research-card--cyan { border-top: 3px solid var(--sol-cyan); }
+.home-research-card--blue { border-top: 3px solid var(--sol-blue); }
+.home-research-card--green { border-top: 3px solid var(--sol-green); }
+
+.home-research-icon {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 1.25rem;
+  color: var(--accent-color);
+}
+
+.home-research-title {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.75rem;
+  color: var(--text-emph);
+}
+
+.home-research-desc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-color);
+  margin: 0;
+  font-weight: 300;
+}
+
+.home-research-footer {
+  text-align: center;
+  display: flex;
+  gap: 2.5rem;
   justify-content: center;
 }
 
-.home-link-item {
-  border: 1px solid var(--text-color);
-  padding: 0.5rem 1.5rem;
+.home-research-footer a {
+  font-size: 0.85rem;
   letter-spacing: 1px;
-}
-
-.home-link-item:hover {
-  background-color: var(--text-color);
-  color: var(--bg-color);
+  font-weight: 500;
+  color: var(--sol-blue);
 }
 
 /* Page Headers */

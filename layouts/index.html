@@ -1,15 +1,53 @@
 {{ define "main" }}
-<section class="hero-section">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">{{ .Title }}</h1>
-    <p class="hero-subtitle">{{ .Params.subtitle }}</p>
+
+<!-- Full-viewport typographic hero, no image -->
+<section class="home-hero">
+  <div class="home-hero-inner">
+    <p class="home-eyebrow">{{ .Params.eyebrow }}</p>
+    <h1 class="home-name">{{ .Title }}</h1>
+    <div class="home-divider"></div>
+    <p class="home-affil">{{ .Params.affiliation }}</p>
+    <div class="home-tags">
+      {{ range .Params.tags }}
+      <span class="home-tag">{{ . }}</span>
+      {{ end }}
+    </div>
+    <nav class="home-social-links" aria-label="Social links">
+      {{ range .Params.social }}
+      <a href="{{ .url }}"{{ if .external }} target="_blank" rel="noopener"{{ end }} class="home-social-link">{{ .name }}</a>
+      {{ end }}
+    </nav>
   </div>
 </section>
 
-<section class="page-section home-section">
-  <div class="page-content">
-    {{ .Content }}
+<!-- Brief bio -->
+<section class="home-bio-section">
+  <div class="home-bio-inner">
+    <p class="home-bio-text">{{ .Params.bio }}</p>
+    <a href="/about/" class="home-bio-cta">About me &rarr;</a>
   </div>
 </section>
+
+<!-- Research areas -->
+{{ if .Params.research_areas }}
+<section class="home-research-section">
+  <div class="home-research-inner">
+    <span class="home-section-label">Research</span>
+    <div class="home-research-grid">
+      {{ range .Params.research_areas }}
+      <div class="home-research-card home-research-card--{{ .color }}">
+        <span class="home-research-icon" aria-hidden="true">{{ .icon }}</span>
+        <h3 class="home-research-title">{{ .title }}</h3>
+        <p class="home-research-desc">{{ .desc }}</p>
+      </div>
+      {{ end }}
+    </div>
+    <div class="home-research-footer">
+      <a href="/research/">View projects &rarr;</a>
+      <a href="/publication/">Publications &rarr;</a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
 {{ end }}
