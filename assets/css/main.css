@@ -47,23 +47,29 @@ a:hover {
 
 /* Header */
 .site-header {
-  padding: var(--spacing);
-  text-align: center;
+  padding: 1.25rem var(--spacing);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .nav-container {
   max-width: var(--container-width);
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .site-title {
-  font-size: 1.5rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  flex-shrink: 0;
+}
+
+.site-title a {
+  color: var(--text-emph);
 }
 
 .nav-links {
@@ -72,14 +78,20 @@ a:hover {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 1.5rem;
 }
 
 .nav-links li a {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 1px;
+  color: var(--text-color);
+}
+
+.nav-links li a:hover {
+  color: var(--text-emph);
+  opacity: 1;
 }
 
 /* Main Content */
