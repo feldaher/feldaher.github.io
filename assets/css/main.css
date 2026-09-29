@@ -79,7 +79,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 1.5rem;
+  gap: 0.6rem 1.1rem;
 }
 
 .nav-links li a {
