@@ -1,8 +1,9 @@
 {{ define "main" }}
-<section class="page-section">
-  <h1 class="page-title">{{ .Title | upper }}</h1>
-  <div class="page-content">
-    {{ .Content }}
-  </div>
-</section>
+<article class="page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Params.summary }}<p class="page-lede">{{ . }}</p>{{ end }}
+  </header>
+  <div class="prose">{{ .Content }}</div>
+</article>
 {{ end }}

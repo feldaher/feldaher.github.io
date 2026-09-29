@@ -1,0 +1,15 @@
+<section class="cv-section">
+  <h2 class="section-label">{{ .title | safeHTML }}</h2>
+  <ol class="cv-list">
+    {{ range .items }}
+    <li class="cv-item">
+      <span class="cv-years">{{ .years }}</span>
+      <div>
+        <span class="cv-title">{{ .title }}</span>
+        {{ with .where }}<span class="cv-where">{{ . }}</span>{{ end }}
+        {{ with .detail }}<p class="cv-detail">{{ . }}</p>{{ end }}
+      </div>
+    </li>
+    {{ end }}
+  </ol>
+</section>

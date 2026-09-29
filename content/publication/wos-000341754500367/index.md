@@ -1,15 +1,13 @@
 ---
-title: A MAXIMUM LIKELIHOOD METHOD FOR LIFETIME ESTIMATION IN PHOTON COUNTING-BASED
-  FLUORESCENCE LIFETIME IMAGING MICROSCOPY
+title: "A maximum likelihood method for lifetime estimation in photon counting-based fluorescence lifetime imaging microscopy"
 authors:
-- A. Chessel
-- F. Waharte
-- J. Salamero
-- C. Kervrann
+- A Chessel
+- F Waharte
+- J Salamero
+- C Kervrann
 date: '2013-01-01'
 publishDate: '2024-05-03T13:16:53.267036Z'
 publication_types:
 - paper-conference
-publication: '*2013 PROCEEDINGS OF THE 21ST EUROPEAN SIGNAL PROCESSING CONFERENCE
-  (EUSIPCO)*'
+publication: '*European Signal Processing Conference (EUSIPCO)*'
 ---

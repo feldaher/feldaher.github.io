@@ -1,65 +1,85 @@
-# Implementing MATLAB's psf2otf Function in Python: Why and How
+---
+title: "Implementing MATLAB's psf2otf in Python: why and how"
+date: 2024-08-13
+summary: "A drop-in NumPy equivalent of MATLAB's psf2otf — and why the padding and circular shift matter for deconvolution."
+aliases: [/post/psf2otf/]
+tags: [imaging, python]
+---
 
-The Point Spread Function (PSF) and the Optical Transfer Function (OTF) are fundamental tools in image processing and the design and analysis of imaging systems. They allow us to understand and manipulate the way that light from the object space is transformed into an image, and to correct for distortions and blurring caused by the imaging process. 
+The Point Spread Function (PSF) and the Optical Transfer Function (OTF) are fundamental tools in image processing and in the design and analysis of imaging systems. They describe how light from object space is transformed into an image, and let us correct for the distortions and blurring introduced by the imaging process.
 
-The PSF describes the response of an imaging system to a point source or point object. It represents the distribution of light from a single point in the object space, as it appears in the image. The PSF often represents the blurring caused by the imaging system, such as the blur caused by out-of-focus optics or motion blur in a camera, or the diffraction pattern caused by the aperture in a microscope.
+The PSF describes the response of an imaging system to a point source. It represents how light from a single point in object space is distributed in the image: the blur caused by out-of-focus optics, by motion, or by diffraction at the aperture of a microscope.
 
-The OTF, on the other hand, is the Fourier transform of the PSF. It describes how different spatial frequencies are handled by the imaging system. The magnitude of the OTF (the Modulation Transfer Function, or MTF) describes how much each frequency is attenuated, while the phase of the OTF describes how each frequency is phase-shifted.
+The OTF is the Fourier transform of the PSF. It describes how the imaging system handles each spatial frequency. Its magnitude — the Modulation Transfer Function (MTF) — tells us how much each frequency is attenuated, and its phase how much each frequency is shifted.
 
-In MATLAB, the `psf2otf` function is used to convert a PSF to an OTF. This function is often used in image processing tasks, particularly in deconvolution operations. In this article, we will discuss how to implement an equivalent function in Python.
+In MATLAB, `psf2otf` converts a PSF into an OTF. It is used constantly in image processing, particularly for deconvolution. Here is how to write an equivalent function in Python.
 
-The `psf2otf` function in MATLAB works by padding, circularly shifting (to ensure the center of the PSF is at (0,0)), and taking the Fourier Transform of the PSF to generate the OTF. 
+## What psf2otf does
 
-Let's break down these steps and translate them into Python code using the NumPy and SciPy libraries.
+MATLAB's `psf2otf` does three things:
 
-1. **Padding**: The PSF needs to be padded to the same size as the image that it will be applied to. This can be done using the `numpy.pad` function.
+1. **Pads** the PSF with zeros, at the end of each axis, up to the size of the image it will be applied to.
+2. **Circularly shifts** the padded PSF so that its central pixel sits at index (0, 0). This is what makes the resulting OTF correspond to a convolution centred on each pixel, rather than one offset by half the PSF width.
+3. **Takes the Fourier transform** of the result.
+
+Let's translate each step using NumPy.
+
+### 1. Padding
 
 ```python
 import numpy as np
 
 def pad_psf_to_shape(psf, shape):
-    pad_sizes = [(s - p) // 2 for s, p in zip(shape, psf.shape)]
-    pad_sizes = [(p, s - p) for p, s in zip(pad_sizes, shape)]
-    return np.pad(psf, pad_sizes, mode='constant')
+    pad_width = [(0, s - p) for s, p in zip(shape, psf.shape)]
+    return np.pad(psf, pad_width, mode="constant")
 ```
 
-2. **Circular Shift**: The PSF needs to be circularly shifted so that its center is at (0,0). This can be done using the `numpy.roll` function.
+### 2. Circular shift
+
+The centre of a PSF of size `n` along an axis is at index `n // 2`. Rolling by `-(n // 2)` moves it to index 0.
 
 ```python
-def circular_shift_psf(psf, shift):
-    return np.roll(psf, shift, axis=(0, 1))
+def center_psf_at_origin(psf, psf_shape):
+    shift = [-(n // 2) for n in psf_shape]
+    return np.roll(psf, shift, axis=tuple(range(psf.ndim)))
 ```
 
-3. **Fourier Transform**: Finally, the Fourier Transform of the PSF is taken to generate the OTF. This can be done using the `numpy.fft.fft2` function.
+### 3. Fourier transform
 
 ```python
 def compute_otf(psf):
-    return np.fft.fft2(psf)
+    return np.fft.fftn(psf)
 ```
 
-Now, let's put these steps together to create a Python function equivalent to MATLAB's `psf2otf`.
+## Putting it together
 
 ```python
 def psf2otf(psf, shape):
-    # Pad the PSF to the desired shape
-    psf = pad_psf_to_shape(psf, shape)
-
-    # Compute the shift needed to move the center of the PSF to (0,0)
-    shift = [dim // 2 for dim in psf.shape]
-
-    # Circularly shift the PSF
-    psf = circular_shift_psf(psf, shift)
-
-    # Compute the OTF
-    otf = compute_otf(psf)
-
-    return otf
+    """Python equivalent of MATLAB's psf2otf, for 2-D or N-D PSFs."""
+    psf = np.asarray(psf, dtype=float)
+    padded = pad_psf_to_shape(psf, shape)
+    centered = center_psf_at_origin(padded, psf.shape)
+    return compute_otf(centered)
 ```
 
-This Python function should provide equivalent functionality to MATLAB's `psf2otf`. It's important to note that the PSF should be normalized (i.e., its sum should be 1) before being passed to this function, as is the case with the MATLAB function.
+A quick sanity check: the OTF of a symmetric PSF should be real (up to rounding), and its value at zero frequency should equal the sum of the PSF.
 
-This function can be used in image processing tasks in Python in the same way that the `psf2otf` function is used in MATLAB. For example, it can be used in deconvolution operations to recover the original image from a blurred image and the PSF used to blur it.
+```python
+psf = np.outer([1, 2, 1], [1, 2, 1]) / 16
+otf = psf2otf(psf, (256, 256))
+assert otf.shape == (256, 256)
+assert np.allclose(otf.imag, 0)
+assert np.isclose(otf[0, 0].real, psf.sum())
+```
 
-Applications of the PSF and OTF are vast. In astronomy, the PSF can be used to correct for atmospheric distortion in images taken by ground-based telescopes. The PSF representing the distortion is measured (often by observing a known star), and then deconvolution is used to correct the images. In medical imaging, such as MRI or CT scans, the PSF can be used to correct for the blurring caused by the imaging process. This can help to produce sharper images, which can aid in diagnosis.
+As with the MATLAB function, the PSF should usually be normalised (its sum equal to 1) before being passed in, so that deconvolution preserves the total intensity.
 
-In conclusion, the PSF and OTF are fundamental tools in image processing and the design and analysis of imaging systems. By implementing MATLAB's `psf2otf` function in Python, we can leverage these tools in a Python environment, opening up a wide range of possibilities for image analysis and manipulation.
+## Where it is used
+
+This function can be used in Python exactly where `psf2otf` is used in MATLAB — for example in Wiener or Richardson–Lucy deconvolution, where the blurred image is divided (in Fourier space) by the OTF, with some regularisation.
+
+The applications are vast. In astronomy, the PSF is measured on a known star and used to correct atmospheric distortion in images from ground-based telescopes. In medical imaging, such as MRI or CT, it corrects the blurring introduced by the acquisition, producing sharper images that aid diagnosis. And in fluorescence microscopy, it is the basis of every deconvolution package.
+
+## Conclusion
+
+The PSF and OTF are fundamental tools in the analysis of imaging systems. With a faithful Python implementation of `psf2otf`, we can use them in a Python workflow without losing the conventions that make MATLAB deconvolution code work — in particular the padding and the circular shift, which are easy to get subtly wrong.

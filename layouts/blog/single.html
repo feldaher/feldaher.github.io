@@ -1,19 +1,17 @@
 {{ define "main" }}
-<article class="blog-post">
-  <header class="blog-post-header">
-    <h1 class="blog-post-title">{{ .Title }}</h1>
-    <div class="blog-post-meta">
-        {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>{{ end }}
-        {{ if .Params.authors }} · {{ delimit .Params.authors ", " }}{{ end }}
-    </div>
+<article class="page post">
+  <header class="page-header">
+    <p class="post-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      · {{ .ReadingTime }} min read
+      {{ with .Params.tags }}· {{ delimit . ", " }}{{ end }}
+    </p>
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Params.summary }}<p class="page-lede">{{ . }}</p>{{ end }}
   </header>
-  
-  <div class="blog-post-content">
-    {{ .Content }}
-  </div>
-
-  <footer class="blog-post-footer">
-    <a href="/blog/" class="back-link">← Back to Blog</a>
+  <div class="prose">{{ .Content }}</div>
+  <footer class="post-footer">
+    <a href="{{ "/blog/" | relURL }}">← All posts</a>
   </footer>
 </article>
 {{ end }}

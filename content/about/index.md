@@ -1,64 +1,13 @@
 ---
-title: About Me
-date: 2023-01-01
+title: About
+type: about
+summary: "Physicist working at the interface of biophysics, cell biology and quantitative imaging."
 ---
 
-<section class="bio-section">
-<div class="bio-text">
+I am a physicist working at the interface of biophysics, cell biology and quantitative imaging. I am currently a postdoctoral researcher in Peter Swain's lab at the University of Edinburgh, and a tenured research engineer at CNRS, France.
 
-I am a postdoctoral researcher at the University of Edinburgh, UK and tenured research engineer at CNRS, France. I am currently looking for opportunities to leverage my expertise in cellular stress response, tissue repair and regeneration, bioimaging, and modelling.
+One question runs through my work: **how do biological systems physically adapt to critical events** — severe stress, injury, resource deprivation? After a PhD in physics at Institut Curie (lab of Jacques Prost), I spent twelve years at Institut Curie's imaging facility developing quantitative fluorescence methods (two-photon FRAP, FLIM/FRET, light-sheet and intravital imaging) and applying them with dozens of cell-biology teams. In Edinburgh, I first studied brain repair in zebrafish, showing that microglia close wounds by exerting mechanical forces, and now study how yeast cells sense and respond to stress.
 
-My research primarily focuses on understanding how biological systems respond and adapt to critical conditions such as stress and injuries. I combine quantitative microscopy, microfluidics, and computational modelling to unravel the complex dynamics of these processes.
+I combine advanced microscopy, microfluidics and theory — stochastic models, coupled PDE–ODE systems and physics-informed neural networks — to turn images into physical measurements.
 
-Previously, I completed my PhD in Physics at the University of Paris - Orsay, where I developed advanced fluorescence techniques to study protein-protein interactions. My background in physics provides me with a unique quantitative perspective on biological problems.
-
-Outside of the lab, I am passionate about 3D printing, music, and martial arts. I also enjoy sharing my knowledge through teaching and outreach activities.
-
-</div>
-</section>
-
-<section class="cv-section">
-  <h2>Education</h2>
-  <div class="cv-item">
-    <div class="cv-year">2002</div>
-    <div class="cv-details">
-      <strong>PhD in Physics</strong><br>
-      University of Paris - Orsay
-    </div>
-  </div>
-  <div class="cv-item">
-    <div class="cv-year">1998</div>
-    <div class="cv-details">
-      <strong>Master in Physics</strong><br>
-      University of Paris - Orsay
-    </div>
-  </div>
-
-  <h2>Interests</h2>
-  <ul class="interests-list">
-    <li>Stress response</li>
-    <li>CNS Regeneration</li>
-    <li>Systems biology</li>
-    <li>Image analysis</li>
-    <li>Microfluidics</li>
-    <li>Microscopy</li>
-    <li>F-techniques</li>
-    <li>3D printing</li>
-  </ul>
-
-  <h2>Skills</h2>
-  <div class="skills-container">
-    <div class="skill-category">
-      <h3>Technical</h3>
-      <p>Python, Data analysis, Microscopy</p>
-    </div>
-    <div class="skill-category">
-      <h3>Hobbies</h3>
-      <p>Hiking, Music, Kung-fu</p>
-    </div>
-  </div>
-
-  <div class="cv-download">
-    <a href="/files/resume.pdf" class="btn btn-download" target="_blank">Download Full CV (PDF)</a>
-  </div>
-</section>
+Outside the lab I enjoy 3D printing, music and kung-fu.

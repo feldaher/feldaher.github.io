@@ -1,23 +1,23 @@
 {{ define "main" }}
-<section class="page-section">
-  <h1 class="page-title">{{ .Title | upper }}</h1>
-  <div class="page-content">
-    {{ .Content }}
-  </div>
-
-  <div class="research-grid">
-    {{ range .Pages.ByDate.Reverse }}
-    <div class="research-item">
-      <div class="research-thumb">
-        {{ with .Resources.GetMatch "featured.*" }}
-        <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
-        {{ end }}
+<section class="page page--wide">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Content }}<div class="page-lede">{{ . }}</div>{{ end }}
+  </header>
+  <div class="project-list">
+    {{ range .Pages.ByWeight }}
+    <a class="project" href="{{ .RelPermalink }}">
+      {{ with .Resources.GetMatch "featured.*" }}
+      <img class="project-img" src="{{ .RelPermalink }}" alt="" loading="lazy">
+      {{ else }}
+      <div class="project-img project-img--empty" aria-hidden="true"></div>
+      {{ end }}
+      <div class="project-body">
+        <h2 class="project-title">{{ .Title }}</h2>
+        <p class="project-summary">{{ .Params.summary }}</p>
+        {{ with .Params.tags }}<p class="tags">{{ range . }}<span>{{ . }}</span>{{ end }}</p>{{ end }}
       </div>
-      <div class="research-info">
-        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-        <div class="research-summary">{{ .Summary }}</div>
-      </div>
-    </div>
+    </a>
     {{ end }}
   </div>
 </section>

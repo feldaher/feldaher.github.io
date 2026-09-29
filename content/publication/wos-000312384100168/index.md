@@ -1,13 +1,12 @@
 ---
-title: LIFETIME ESTIMATION OF MOVING VESICLES IN FREQUENCY-DOMAIN FLUORESCENCE LIFETIME
-  IMAGING MICROSCOPY
+title: "Lifetime estimation of moving vesicles in frequency-domain fluorescence lifetime imaging microscopy"
 authors:
-- Philippe Roudot
-- Charles Kervrann
-- Francois Waharte
+- P Roudot
+- C Kervrann
+- F Waharte
 date: '2012-01-01'
 publishDate: '2024-05-03T13:16:53.316609Z'
 publication_types:
 - paper-conference
-publication: '*2012 9TH IEEE INTERNATIONAL SYMPOSIUM ON BIOMEDICAL IMAGING (ISBI)*'
+publication: '*IEEE International Symposium on Biomedical Imaging (ISBI)*'
 ---

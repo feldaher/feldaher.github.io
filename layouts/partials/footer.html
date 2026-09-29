@@ -1,3 +1,11 @@
 <footer class="site-footer">
-  <p>&copy; {{ now.Year }} {{ .Site.Params.copyright }}</p>
+  <div class="footer-inner">
+    <nav class="footer-links" aria-label="Elsewhere">
+      {{ range .Site.Params.social }}
+      <a href="{{ .url }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a>
+      {{ end }}
+      <a href="{{ "/games/" | relURL }}">Games</a>
+    </nav>
+    <p>&copy; {{ now.Year }} {{ .Site.Params.copyright }}</p>
+  </div>
 </footer>

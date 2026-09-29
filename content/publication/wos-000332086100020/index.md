@@ -1,45 +1,45 @@
 ---
 title: Objective comparison of particle tracking methods
 authors:
-- Nicolas Chenouard
-- Ihor Smal
-- Fabrice de Chaumont
-- Martin Maska
-- Ivo F. Sbalzarini
-- Yuanhao Gong
-- Janick Cardinale
-- Craig Carthel
-- Stefano Coraluppi
-- Mark Winter
-- Andrew R. Cohen
-- William J. Godinez
-- Karl Rohr
-- Yannis Kalaidzidis
-- Liang Liang
-- James Duncan
-- Hongying Shen
-- Yingke Xu
-- Klas E. G. Magnusson
-- Joakim Jalden
-- Helen M. Blau
-- Perrine Paul-Gilloteaux
-- Philippe Roudot
-- Charles Kervrann
-- Francois Waharte
-- Jean-Yves Tinevez
-- Spencer L. Shorte
-- Joost Willemse
-- Katherine Celler
-- Gilles P. van Wezel
-- Han-Wei Dan
-- Yuh-Show Tsai
-- Carlos Ortiz de Solorzano
-- Jean-Christophe Olivo-Marin
-- Erik Meijering
+- N Chenouard
+- I Smal
+- F de Chaumont
+- M Maska
+- I F Sbalzarini
+- Y Gong
+- J Cardinale
+- C Carthel
+- S Coraluppi
+- M Winter
+- A R Cohen
+- W J Godinez
+- K Rohr
+- Y Kalaidzidis
+- L Liang
+- J Duncan
+- H Shen
+- Y Xu
+- K E G Magnusson
+- J Jalden
+- H M Blau
+- P Paul-Gilloteaux
+- P Roudot
+- C Kervrann
+- F Waharte
+- J-Y Tinevez
+- S L Shorte
+- J Willemse
+- K Celler
+- G P van Wezel
+- H-W Dan
+- Y-S Tsai
+- C Ortiz de Solorzano
+- J-C Olivo-Marin
+- E Meijering
 date: '2014-03-01'
 publishDate: '2024-05-03T13:16:53.228927Z'
 publication_types:
 - article-journal
-publication: '*NATURE METHODS*'
+publication: '*Nature Methods*'
 doi: 10.1038/nmeth.2808
 ---

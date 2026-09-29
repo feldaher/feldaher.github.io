@@ -29,7 +29,7 @@ authors:
 - S Mancini
 - J Nicolas
 - F Palla
-- HB Pan
+- H Pan
 - F Paoletti
 - A Pasqualetti
 - D Passuello
@@ -43,7 +43,6 @@ date: '1997-07-01'
 publishDate: '2024-05-03T13:16:53.423488Z'
 publication_types:
 - article-journal
-publication: '*NUCLEAR INSTRUMENTS & METHODS IN PHYSICS RESEARCH SECTION A-ACCELERATORS
-  SPECTROMETERS DETECTORS AND ASSOCIATED EQUIPMENT*'
+publication: '*Nuclear Instruments and Methods in Physics Research A*'
 doi: 10.1016/S0168-9002(97)00661-X
 ---

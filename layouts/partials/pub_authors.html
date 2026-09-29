@@ -1,0 +1,17 @@
+{{- /* Author list with the site owner's name highlighted; lists over 8 authors are elided around it. */ -}}
+{{- $authors := .Params.authors | default slice -}}
+{{- $n := len $authors -}}
+{{- $me := -1 -}}
+{{- range $i, $a := $authors }}{{ range site.Params.author_names }}{{ if and (eq $me -1) (in $a .) }}{{ $me = $i }}{{ end }}{{ end }}{{ end -}}
+{{- $parts := slice -}}
+{{- $prev := -1 -}}
+{{- range $i, $a := $authors -}}
+  {{- if or (le $n 8) (lt $i 3) (eq $i $me) (eq $i (sub $n 1)) -}}
+    {{- if gt $i (add $prev 1) }}{{ $parts = $parts | append "…" }}{{ end -}}
+    {{- $html := $a | htmlEscape -}}
+    {{- if eq $i $me }}{{ $html = printf "<strong>%s</strong>" $html }}{{ end -}}
+    {{- $parts = $parts | append $html -}}
+    {{- $prev = $i -}}
+  {{- end -}}
+{{- end -}}
+{{ delimit $parts ", " | safeHTML }}

@@ -14,5 +14,6 @@ date: '2002-01-01'
 publishDate: '2024-05-03T13:16:53.404019Z'
 publication_types:
 - article-journal
-publication: '*BIOPHYSICAL JOURNAL*'
+publication: '*Biophysical Journal*'
+note: meeting abstract
 ---

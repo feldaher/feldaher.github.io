@@ -13,7 +13,6 @@ date: '2002-10-01'
 publishDate: '2024-05-03T13:16:53.397843Z'
 publication_types:
 - article-journal
-publication: '*PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES
-  OF AMERICA*'
+publication: '*Proceedings of the National Academy of Sciences USA*'
 doi: 10.1073/pnas.192084599
 ---

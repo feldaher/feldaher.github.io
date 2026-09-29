@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{ $cv := site.Data.cv }}
+<article class="page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+  </header>
+  <div class="prose">{{ .Content }}</div>
+
+  <p class="cv-download"><a class="button" href="{{ "/files/resume.pdf" | relURL }}">Download CV (PDF)</a></p>
+
+  {{ partial "cv_section.html" (dict "title" "Positions" "items" $cv.positions) }}
+  {{ partial "cv_section.html" (dict "title" "Education" "items" $cv.education) }}
+  {{ partial "cv_section.html" (dict "title" "Awards &amp; funding" "items" $cv.awards) }}
+  {{ partial "cv_section.html" (dict "title" "Instrument &amp; method development" "items" $cv.developments) }}
+  {{ partial "cv_section.html" (dict "title" "Supervision &amp; teaching" "items" $cv.teaching) }}
+  {{ partial "cv_section.html" (dict "title" "Service" "items" $cv.service) }}
+
+  <section class="cv-section">
+    <h2 class="section-label">Skills</h2>
+    <dl class="skills">
+      {{ range $cv.skills }}<dt>{{ .area }}</dt><dd>{{ .items }}</dd>{{ end }}
+    </dl>
+  </section>
+</article>
+{{ end }}

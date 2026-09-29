@@ -1,0 +1,7 @@
+{{- $link := "" -}}
+{{- with .Params.link }}{{ $link = . }}{{ else }}{{ with .Params.doi }}{{ $link = printf "https://doi.org/%s" . }}{{ end }}{{ end -}}
+<li class="pub">
+  <span class="pub-title">{{ if $link }}<a href="{{ $link }}" rel="noopener">{{ .Title | safeHTML }}</a>{{ else }}{{ .Title | safeHTML }}{{ end }}</span>
+  <span class="pub-authors">{{ partial "pub_authors.html" . }}</span>
+  <span class="pub-venue">{{ with .Params.publication }}{{ . | markdownify }}{{ end }}{{ with .Params.note }} · {{ . }}{{ end }} · {{ .Date.Format "2006" }}</span>
+</li>

@@ -1,14 +1,13 @@
 ---
-title: 'NOISE MODELING FOR INTENSIFIED CAMERA IN FLUORESCENCE IMAGING: APPLICATION
-  TO IMAGE DENOISING'
+title: "Noise modeling for intensified camera in fluorescence imaging: application to image denoising"
 authors:
-- Philippe Roudot
-- Charles Kervrann
-- Jerome Boulanger
-- Francois Waharte
+- P Roudot
+- C Kervrann
+- J Boulanger
+- F Waharte
 date: '2013-01-01'
 publishDate: '2024-05-03T13:16:53.279096Z'
 publication_types:
 - paper-conference
-publication: '*2013 IEEE 10TH INTERNATIONAL SYMPOSIUM ON BIOMEDICAL IMAGING (ISBI)*'
+publication: '*IEEE International Symposium on Biomedical Imaging (ISBI)*'
 ---

@@ -1,24 +1,27 @@
 {{ define "main" }}
-<section class="page-section publication-list">
-  <h1 class="page-title">{{ .Title | upper }}</h1>
-  
-  <div class="publications-container">
-    {{ range .Pages.ByDate.Reverse }}
-    <div class="publication-item">
-      <div class="pub-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
-      <div class="pub-authors">
-        {{ partial "authors_list.html" . }}
-      </div>
-      <div class="pub-meta">
-        {{ if .Params.publication_short }}<span class="pub-journal">{{ .Params.publication_short }}</span>{{ end }}
-        {{ if .Date }}<span class="pub-year">{{ .Date.Format "2006" }}</span>{{ end }}
-      </div>
-      <div class="pub-links">
-        {{ if .Params.url_pdf }}<a href="{{ .Params.url_pdf }}">PDF</a>{{ end }}
-        {{ if .Params.url_code }}<a href="{{ .Params.url_code }}">Code</a>{{ end }}
-      </div>
-    </div>
-    {{ end }}
+<section class="page">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Content }}<div class="page-lede">{{ . }}</div>{{ end }}
+  </header>
+
+  {{ $articles := where .Pages "Params.publication_types" "intersect" (slice "article-journal" "article") }}
+  {{ $other := where .Pages "Params.publication_types" "intersect" (slice "paper-conference" "chapter") }}
+
+  <h2 class="section-label">Articles &amp; preprints</h2>
+  {{ range $articles.GroupByDate "2006" }}
+  <div class="pub-year">
+    <h3 class="pub-year-label">{{ .Key }}</h3>
+    <ul class="pub-list">{{ range .Pages }}{{ partial "pub_item.html" . }}{{ end }}</ul>
   </div>
+  {{ end }}
+
+  <h2 class="section-label">Conference proceedings &amp; book chapters</h2>
+  {{ range $other.GroupByDate "2006" }}
+  <div class="pub-year">
+    <h3 class="pub-year-label">{{ .Key }}</h3>
+    <ul class="pub-list">{{ range .Pages }}{{ partial "pub_item.html" . }}{{ end }}</ul>
+  </div>
+  {{ end }}
 </section>
 {{ end }}

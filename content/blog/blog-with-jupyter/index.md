@@ -1,15 +1,17 @@
 ---
-title: Why are there moving lights at the bottom of swimming pools? Here comes the Transport of Intensity effect.
-description: null
-icon: null
-createdAt: "2024-05-13T13:44:51.329Z"
-creationDate: 2024-05-13 14:44
-modificationDate: 2024-05-13 14:45
-tags: [blog]
-coverImage: null
+title: "Why are there moving lights at the bottom of swimming pools?"
+date: 2024-05-13
+summary: "The bright, shifting network on the floor of a pool is the Transport of Intensity effect — and the same physics lets us weigh the inside of living cells."
+tags: [optics, imaging]
+math: true
+slug: swimming-pool-light
+aliases:
+  - /blog/blog-with-jupyter/
+  - /post/blog-with-jupyter/
 ---
 
-Have ever noticed this typical network of bright-and-dark areas on the bottom of a swimming pool?
+
+Have you ever noticed this typical network of bright-and-dark areas on the bottom of a swimming pool?
 
 You certainly observed that its variations were correlated to how much the water was agitated by swimmers or divers.
 
@@ -21,7 +23,7 @@ Let me show you.
 
 Here is a simplified illustration of the phenomenon using geometrical optics:
 
-![Untitled](https://cdn.hashnode.com/res/hashnode/image/upload/v1655719737905/Xf413-jRk.jpg?auto=compress,format&format=webp)
+![Rays of light refracted by a wavy water surface converge into bright lines and diverge into dark areas](https://cdn.hashnode.com/res/hashnode/image/upload/v1655719737905/Xf413-jRk.jpg?auto=compress,format&format=webp)
 
 Due to refraction, rays of light will converge or diverge depending on the curvature of the change in refractive index between two mediums: air and water for example.
 
@@ -31,7 +33,7 @@ This is similar to what you can observe with a magnifying lens. Light is concent
 
 The waves at the surface of the water act as a multitude of lenses.
 
-If the water is perfectly still, you won't see any pattern on the bottom of the swimming pool before the surface is flat and there are no differences in light condensation.
+If the water is perfectly still, you won't see any pattern on the bottom of the swimming pool because the surface is flat and there are no differences in light condensation.
 
 You can observe other manifestations of the transport of intensity phenomenon in daily life: see how the view through your windows is deformed when rains fall for example.
 
@@ -41,11 +43,21 @@ But let's dive a bit deeper into this phenomenon to understand how it works and 
 
 You may have learned that phase is not detectable unless you produce interferences. This typically requires a coherent monochromatic light source like a laser.
 
-_So how can transparent objects generate intensity patterns from incoherent plurichromatic light like the sunlight? _
+*So how can transparent objects generate intensity patterns from incoherent, polychromatic light like sunlight?*
 
 The theory behind this common phenomenon has been [established in 1982 by Teague](https://opg.optica.org/josa/fulltext.cfm?uri=josa-72-9-1199&id=58482). It is named the Transport of intensity (TIE) theory.
 
-The TIE equation can be simplified in certain conditions like that:
+In its general form, for a wave of wavenumber \(k\) travelling along \(z\), with intensity \(I\) and phase \(\phi\), it reads:
+
+$$
+-k\,\frac{\partial I}{\partial z} = \nabla_{\perp} \cdot \left( I\, \nabla_{\perp} \phi \right)
+$$
+
+When the intensity is roughly uniform, it simplifies to:
+
+$$
+\frac{\partial I}{\partial z} \approx -\frac{I}{k}\, \nabla_{\perp}^{2} \phi
+$$
 
 OK, maybe you don't find it simple, so let's make it easier.
 
@@ -57,7 +69,7 @@ We are back at the swimming pool.
 
 The sunlight goes through the air down to touch the surface of the water. In the air, the density is roughly the same (thankfully! I would be uncomfortable to start suffocating depending on where we are).
 
-Thus, the TIE tells us that the intensity variation is 0 (the ∇x,yΦ stuff is 0 on the right-hand side of the equation).
+Thus, the TIE tells us that the intensity variation is 0 (the \(\nabla_{\perp}\phi\) term on the right-hand side of the equation is 0).
 
 Nothing much happens. (In reality, things happen and that's why stars are sparkling. Same phenomenon. But let's stay focused on the swimming pool, shall we?)
 
@@ -75,7 +87,7 @@ You'll never look at a swimming pool the same way now!
 
 But apart from making you smarter in front of your partner or friends at the next dinner or beer party, why does it matter?
 
-Because they are actual applications. I will mention one in the field of life science so you get an idea (and brag even more about your deep scientific knowledge).
+Because there are actual applications. I will mention one in the field of life science so you get an idea (and brag even more about your deep scientific knowledge).
 
 ## Application of the Transport of Intensity to life science
 
@@ -109,9 +121,9 @@ But we can use the TIE equation and measure finely the variations in intensity t
 
 That's the solution: measuring the intensity at different locations along the axis of illumination and compute the map of cellular waves.
 
-The computations are a bit complicated to be shown here, but if you are interested, you can have a good read of [this paper by Bostan et al](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjjlPTPwfr4AhWWQ0EAHfyRBqgQFnoECAcQAQ&url=http%3A%2F%2Fbigwww.epfl.ch%2Fpublications%2Fbostan1601.pdf&usg=AOvVaw1Rd0kCApAkzVvTuH_E2gfz). (This link looks weird but it is safe, don't worry).
+The computations are a bit complicated to be shown here, but if you are interested, you can have a good read of [this paper by Bostan et al](http://bigwww.epfl.ch/publications/bostan1601.pdf).
 
-This has been used by scientists to study the [evolution of cell density during the cell cycle in yeast](https://elifesciences.org/articles/64901)for example.
+This has been used by scientists to study the [evolution of cell density during the cell cycle in yeast](https://elifesciences.org/articles/64901), for example.
 
 There are more applications coming, so stay tuned!
 
@@ -125,6 +137,6 @@ Fun stuff, right?
 
 ## Sources
 
-Original Teague papers [opg.optica.org/josa/abstract.cfm?uri=josa-7..](https://opg.optica.org/josa/abstract.cfm?uri=josa-73-11-1434) [opg.optica.org/josa/fulltext.cfm?uri=josa-7..](https://opg.optica.org/josa/fulltext.cfm?uri=josa-72-9-1199&id=58482)
-
-Great paper on the Transport of Intensity: [Bostan et al. IEEE TRANSACTIONS ON IMAGE PROCESSING, VOL. 25, NO. 2, FEBRUARY 2016.](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjjlPTPwfr4AhWWQ0EAHfyRBqgQFnoECAcQAQ&url=http%3A%2F%2Fbigwww.epfl.ch%2Fpublications%2Fbostan1601.pdf&usg=AOvVaw1Rd0kCApAkzVvTuH_E2gfz)
+- Teague, M. R. (1982). Irradiance moments: their propagation and use for unique retrieval of phase. [*JOSA* 72(9)](https://opg.optica.org/josa/fulltext.cfm?uri=josa-72-9-1199&id=58482).
+- Teague, M. R. (1983). Deterministic phase retrieval: a Green's function solution. [*JOSA* 73(11)](https://opg.optica.org/josa/abstract.cfm?uri=josa-73-11-1434).
+- Bostan, E., *et al.* (2016). Variational phase imaging using the transport-of-intensity equation. [*IEEE Trans. Image Process.* 25(2)](http://bigwww.epfl.ch/publications/bostan1601.pdf).

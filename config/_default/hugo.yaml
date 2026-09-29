@@ -8,18 +8,18 @@ enableRobotsTXT: true
 pagination:
   pagerSize: 20
 
-# Preserving taxonomies for content organization
 taxonomies:
   tag: tags
-  category: categories
-  publication_type: publication_types
-  author: authors
 
-# Simple permalinks
-permalinks:
-  publication_types: "/publication-type/:slug/"
+disableKinds: ["taxonomy", "term"]
 
 markup:
   goldmark:
     renderer:
       unsafe: true
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block: [["$$", "$$"]]
+          inline: [["\\(", "\\)"]]

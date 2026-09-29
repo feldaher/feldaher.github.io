@@ -1,53 +1,53 @@
 {{ define "main" }}
-
-<!-- Full-viewport typographic hero, no image -->
-<section class="home-hero">
-  <div class="home-hero-inner">
-    <p class="home-eyebrow">{{ .Params.eyebrow }}</p>
-    <h1 class="home-name">{{ .Title }}</h1>
-    <div class="home-divider"></div>
-    <p class="home-affil">{{ .Params.affiliation }}</p>
-    <div class="home-tags">
-      {{ range .Params.tags }}
-      <span class="home-tag">{{ . }}</span>
-      {{ end }}
-    </div>
-    <nav class="home-social-links" aria-label="Social links">
-      {{ range .Params.social }}
-      <a href="{{ .url }}"{{ if .external }} target="_blank" rel="noopener"{{ end }} class="home-social-link">{{ .name }}</a>
-      {{ end }}
-    </nav>
-  </div>
+<section class="hero">
+  {{ with .Params.eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+  <h1 class="hero-name">{{ .Title }}</h1>
+  <p class="hero-lede">{{ .Params.lede | markdownify }}</p>
+  <p class="hero-affil">{{ .Params.affiliation }}</p>
+  <nav class="hero-links" aria-label="Profiles">
+    {{ range .Site.Params.social }}<a href="{{ .url }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a>{{ end }}
+    <a href="{{ "/about/" | relURL }}">CV</a>
+  </nav>
 </section>
 
-<!-- Brief bio -->
-<section class="home-bio-section">
-  <div class="home-bio-inner">
-    <p class="home-bio-text">{{ .Params.bio }}</p>
-    <a href="/about/" class="home-bio-cta">About me &rarr;</a>
-  </div>
-</section>
-
-<!-- Research areas -->
-{{ if .Params.research_areas }}
-<section class="home-research-section">
-  <div class="home-research-inner">
-    <span class="home-section-label">Research</span>
-    <div class="home-research-grid">
-      {{ range .Params.research_areas }}
-      <div class="home-research-card home-research-card--{{ .color }}">
-        <span class="home-research-icon" aria-hidden="true">{{ .icon }}</span>
-        <h3 class="home-research-title">{{ .title }}</h3>
-        <p class="home-research-desc">{{ .desc }}</p>
-      </div>
-      {{ end }}
-    </div>
-    <div class="home-research-footer">
-      <a href="/research/">View projects &rarr;</a>
-      <a href="/publication/">Publications &rarr;</a>
-    </div>
-  </div>
+{{ with .Content }}
+<section class="home-block home-bio">
+  {{ . }}
 </section>
 {{ end }}
 
+{{ with (where site.RegularPages "Section" "research").ByWeight }}
+<section class="home-block">
+  <h2 class="section-label">Research</h2>
+  <ol class="theme-list">
+    {{ range . }}
+    <li class="theme">
+      <a href="{{ .RelPermalink }}">
+        <span class="theme-title">{{ .Title }}</span>
+        <span class="theme-summary">{{ .Params.summary }}</span>
+      </a>
+    </li>
+    {{ end }}
+  </ol>
+</section>
+{{ end }}
+
+{{ with (where (where site.RegularPages "Section" "publication") "Params.featured" true).ByDate.Reverse }}
+<section class="home-block">
+  <h2 class="section-label">Selected publications</h2>
+  <ul class="pub-list">
+    {{ range . }}{{ partial "pub_item.html" . }}{{ end }}
+  </ul>
+  <p class="more"><a href="{{ "/publication/" | relURL }}">All publications →</a></p>
+</section>
+{{ end }}
+
+{{ with first 3 (where site.RegularPages "Section" "blog").ByDate.Reverse }}
+<section class="home-block">
+  <h2 class="section-label">Latest from the blog</h2>
+  <ul class="post-list">
+    {{ range . }}{{ partial "post_item.html" . }}{{ end }}
+  </ul>
+</section>
+{{ end }}
 {{ end }}

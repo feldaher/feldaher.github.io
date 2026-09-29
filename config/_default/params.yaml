@@ -1,5 +1,23 @@
 # Site Parameters
 
-description: "Francois El-Daher"
+description: "Francois El-Daher — physicist working on how cells and tissues adapt to stress and injury. University of Edinburgh · CNRS."
 copyright: "Francois El-Daher"
-favicon: "" # Add path if you have one
+email: "francois.el-daher@ed.ac.uk"
+
+# Name variants highlighted in publication author lists
+author_names:
+  - "El-Daher"
+  - "Waharte"
+
+# Shown in the footer and on the home page
+social:
+  - name: Email
+    url: "mailto:francois.el-daher@ed.ac.uk"
+  - name: ORCID
+    url: "https://orcid.org/0000-0002-6676-3970"
+  - name: Scholar
+    url: "https://scholar.google.co.uk/citations?user=YkJnq24AAAAJ"
+  - name: GitHub
+    url: "https://github.com/feldaher"
+  - name: LinkedIn
+    url: "https://www.linkedin.com/in/francois-el-daher-682441204/"

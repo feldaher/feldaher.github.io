@@ -11,10 +11,10 @@ authors:
 - G Cella
 - E Cuoco
 - V Dattilo
-- G De Carolis
-- R De Salvo
-- A Di Virgilio
-- GT Feng
+- G D Carolis
+- R D Salvo
+- A D Virgilio
+- G Feng
 - I Ferrante
 - F Fidecaro
 - F Frasconi
@@ -24,14 +24,14 @@ authors:
 - A Giazotto
 - L Holloway
 - J Kovalik
-- P La Penna
+- P L Penna
 - G Losurdo
 - S Malik
 - S Mancini
 - F Marchesoni
 - J Nicolas
 - F Palla
-- HB Pan
+- H Pan
 - F Paoletti
 - A Pasqualetti
 - D Passuello
@@ -48,7 +48,6 @@ date: '1998-02-01'
 publishDate: '2024-05-03T13:16:53.416145Z'
 publication_types:
 - article-journal
-publication: '*NUCLEAR INSTRUMENTS & METHODS IN PHYSICS RESEARCH SECTION A-ACCELERATORS
-  SPECTROMETERS DETECTORS AND ASSOCIATED EQUIPMENT*'
+publication: '*Nuclear Instruments and Methods in Physics Research A*'
 doi: 10.1016/S0168-9002(97)01123-6
 ---
