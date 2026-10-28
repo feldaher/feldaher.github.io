@@ -5,6 +5,9 @@ main:
   - name: Jelly Cells
     url: "/jelly-cells/"
     weight: 15
+  - name: Turgor
+    url: "/turgor/"
+    weight: 16
   - name: Publications
     url: "/publication/"
     weight: 20

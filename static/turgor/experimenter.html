@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turgor Experimenter</title>
+  <meta name="description" content="A budding yeast under osmotic stress: predict what it does, then watch the model and the published data." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/turgor/assets/experimenter-DGOmLH2Q.js"></script>
+  <link rel="modulepreload" crossorigin href="/turgor/assets/plots-C3t3-IMf.js">
+  <link rel="stylesheet" crossorigin href="/turgor/assets/experimenter-Bwext2GU.css">
+</head>
+<body>
+  <canvas id="stage" aria-label="A budding yeast cell as a soft body"></canvas>
+  <svg id="stroke" aria-hidden="true"><polyline points="" /></svg>
+
+  <header class="title">
+    <p class="eyebrow">Biology Studies / Turgor · <a href="./index.html" style="pointer-events:auto;color:inherit">Play →</a></p>
+    <h1>Turgor.</h1>
+  </header>
+
+  <aside class="left" aria-label="Challenges">
+    <nav class="modes" role="tablist">
+      <button class="mode active" data-mode="act1" role="tab" aria-selected="true">Act 1 · Experimenter</button>
+      <button class="mode" data-mode="lab" role="tab" aria-selected="false">Lab</button>
+    </nav>
+    <section id="act1">
+      <ol id="challenges" class="challenges"></ol>
+      <article id="card" class="card" hidden>
+        <p class="label" id="card-id"></p>
+        <h2 id="card-title"></h2>
+        <p id="card-question" class="question"></p>
+        <form id="predict" class="predict"></form>
+        <div id="verdict" class="verdict" hidden>
+          <p id="verdict-text" class="verdict-text"></p>
+          <p id="card-text" class="explain"></p>
+          <p id="card-source" class="source"></p>
+        </div>
+      </article>
+    </section>
+    <section id="lab" hidden>
+      <p class="explain">Set the medium and watch the cell. One second on screen is one minute of the cell's time.</p>
+      <label class="slider"><span>NaCl <output id="nacl-out">0.00 M</output></span><input id="nacl" type="range" min="0" max="1.5" step="0.05" value="0" /></label>
+      <label class="slider"><span>Sorbitol <output id="sorb-out">0.00 M</output></span><input id="sorb" type="range" min="0" max="3" step="0.1" value="0" /></label>
+      <label class="slider"><span>Strain</span>
+        <select id="strain"><option>WT</option><option>hog1Δ</option><option>gpd1Δ gpd2Δ</option><option>fps1Δ</option><option>fps1-ΔN</option></select>
+      </label>
+      <div class="row"><button id="lab-reset" class="btn">Fresh cell</button></div>
+    </section>
+  </aside>
+
+  <div class="top" aria-label="View and tools">
+    <div class="status"><span class="dot"></span><span id="status-text">WebGPU · Starting</span></div>
+    <div class="clock"><span id="clock">0.0 min</span><span id="speed">×60</span></div>
+    <div class="seg">
+      <button class="btn toggle" id="view-btn" aria-pressed="false">Hog1-GFP view</button>
+      <button class="btn toggle" id="knife-btn" aria-pressed="false">Knife</button>
+    </div>
+    <button class="btn" id="notebook-btn">Notebook</button>
+  </div>
+
+  <figure class="plots" aria-label="Live readouts">
+    <div class="plot"><figcaption><span>Volume</span><span class="key" id="vol-key"></span></figcaption><canvas id="plot-v"></canvas></div>
+    <div class="plot"><figcaption><span>Nuclear Hog1</span><span class="key" id="hog-key"></span></figcaption><canvas id="plot-h"></canvas></div>
+    <p class="axis"><span>0</span><span id="plot-span">min</span></p>
+    <dl class="readout">
+      <div><dt>Volume</dt><dd id="r-v">100 %</dd></div>
+      <div><dt>Turgor</dt><dd id="r-p">0.50 MPa</dd></div>
+      <div><dt>Hog1</dt><dd id="r-h">0</dd></div>
+      <div><dt>Fps1 open</dt><dd id="r-f">100 %</dd></div>
+    </dl>
+  </figure>
+
+  <dialog id="notebook" class="notebook" aria-labelledby="nb-title">
+    <div class="nb-head"><h2 id="nb-title">Field notebook</h2><button id="nb-close" class="x" aria-label="Close">×</button></div>
+    <div id="nb-pages"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+  <div id="fallback" class="fallback" hidden><p id="fallback-msg"></p></div>
+</body>
+</html>
